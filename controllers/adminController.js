@@ -24,14 +24,14 @@ exports.createAdmin = async(req,res) =>{
   
 
   //pemisahan.
-  // const {nama_depan,nama_belakang} = req.body;
-  // const nama_lengkap = `${nama_depan} ${nama_belakang}`
+  const {nama_depan,nama_belakang} = req.body;
+  const nama_lengkap = `${nama_depan} ${nama_belakang}`
 
   const fieldsAdmin = {
               //bagian ini boleh beda dengan nama field di DB.
     username: req.body.username,
     password: req.body.password,
-    nama_lengkap: req.body.nama_lengkap,
+    nama_lengkap: nama_lengkap,
     nomor_telepon: req.body.nomor_telepon,
     alamat_email: req.body.alamat_email,
     // profile_admin: file.foto_profil
@@ -52,6 +52,11 @@ exports.createAdmin = async(req,res) =>{
       });
     }
   })
+};
+
+exports.showDataTable = (req,res)=>{
+
+  
 };
 
 

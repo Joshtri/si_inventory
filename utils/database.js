@@ -4,7 +4,7 @@ const mysql = require ("mysql");
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'db_inventorySMA1'
+    database: 'db_inventorysma1'
   });
 
 
