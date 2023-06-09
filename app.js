@@ -2,6 +2,9 @@ const express = require ("express");
 const serveFavicon = require ("serve-favicon");
 const path = require ("path");
 const ejs = require  ('ejs');
+const bodyparser = require('body-parser')
+const morgan = require('morgan')
+const cors = require('cors')
 
 const loginRoutes = require  ('./routes/login.js');
 const adminRoutes = require  ('./routes/admin.js');
@@ -16,8 +19,21 @@ const PORT = process.env.PORT || 3000;
 
 // const __dirname = path.resolve();
 
+
+// Menambahkan library utk log request😭😭😭
+app.use(morgan('tiny'));
+
+app.use(cors());
+ 
+// Menambahkan middleware body-parser pada aplikasi
+app.use(bodyparser.json());
+// parse request to body-parser
+app.use(bodyparser.urlencoded({ extended : true}))
+
+
 // Connect to the database
 app.set('view engine', 'ejs');
+app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
 app.use(serveFavicon(path.join(__dirname + '/public/favicon.png')));

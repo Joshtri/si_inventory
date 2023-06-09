@@ -5,9 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= dashboardData.title %>></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
     <%- include('layouts/header.ejs'); %>
+
+
+    <div class="container pt-5">
+        <div class="card bg-light">
+            <div class="card-body ">
+                <h3>Dashboard</h3>
+                <div class="row g-3">
+                    <div class="col-md-4 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title text-center"><i class="bi bi-people-fill mx-1"></i>Total Admin</h6>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title text-center"><i class="bi bi-box-seam-fill mx-1"></i>Total Produk</h6>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h3>Statistik</h3>
+
+            </div>
+        </div>
+    </div>
 
 
 

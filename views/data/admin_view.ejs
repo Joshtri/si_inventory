@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   
   <%- include('layouts/header');%>
@@ -49,7 +50,63 @@
     </table>
 
   </div>
+  <% if (success) { %>
+    <!-- Kode HTML untuk modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Input Data Berhasil</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Data admin berhasil ditambahkan.
+          </div>
+          <div class="modal-footer">
+            <a href="/data/data_admin">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <% } %>
 
+    <!-- <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Inputan Berhasil</h5>
+        <p class="card-text">Data admin berhasil ditambahkan.</p>
+      </div>
+    </div> -->
+    <!-- Kode JavaScript untuk menampilkan card box saat halaman dimuat -->
+
+    <script>
+      $(document).ready(function() {
+        $('#successCard').fadeIn(1000);
+        setTimeout(function() {
+          $('#successCard').fadeOut(1000);
+        }, 3000);
+      });
+    </script>
+
+<script>
+  $(document).ready(function() {
+    $('#successModal').modal('show');
+  });
+</script>
+
+
+
+  <!-- Tempatkan card box di dalam tampilan -->
+  <div id="successCard" style="display: none;">
+    <!-- Kode card box di sini -->
+  </div>
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> -->
   <%- include('layouts/footer');%>
 
 </body>
