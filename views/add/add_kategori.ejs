@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= kategoriData.title %></title>
+</head>
+<body>
+  <%- include('layouts/header'); %>
+  <div class="container mt-5">
+    <h5>Tambah Kategori </h5>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-body">
+            <form class="row g-3" action="/data/post_kategori" method="POST">
+              <div class="align-content-center">
+
+                <div class="col-md-4">
+                  <label for="" class="form-label">Nama Kategori</label>
+                  <input class="form-control" type="text" name="nama_kategori" required>
+                </div>
+                
+                <div class="col-md-4 mt-2">
+                  <label class="form-label" for="">Keterangan</label>  
+                  <input class="form-control" type="text" name="keterangan" required>
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <button class="btn btn-primary mx-2" type="submit">Submit</button>
+                <a href="/data/data_kategori" class="btn btn-danger">Close</a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <%- include('layouts/footer'); %> 
+</body>
+</html>

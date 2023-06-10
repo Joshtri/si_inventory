@@ -9,6 +9,8 @@ const cors = require('cors')
 const loginRoutes = require  ('./routes/login.js');
 const adminRoutes = require  ('./routes/admin.js');
 const dashboardRoutes = require('./routes/dashboard.js');
+const kategoriRoutes = require('./routes/kategori.js');
+const produkRoutes = require('./routes/produk.js');
 
 
 //import database from utils.
@@ -52,7 +54,7 @@ app.set('views',[
 
 // inisialisasi routes. 
 app.use('/', loginRoutes,dashboardRoutes);
-app.use('/data', adminRoutes);
+app.use('/data', adminRoutes, kategoriRoutes, produkRoutes);
 
   
 app.listen(PORT,()=>{

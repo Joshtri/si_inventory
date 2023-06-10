@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= kategoriData.title %></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  <%- include('layouts/header'); %>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <div class="container mt-5">
+    <h3 class="text-center">Data Kategori</h3>
+
+    <a href="/data/add_kategori" class="btn btn-dark mb-3"><i class="bi bi-plus-circle mx-1"></i>Tambah Data</a>
+
+    <div class="float-end d-flex">
+      <input type="text" class="form-control me-2" id="search-bar" placeholder="Search">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+
+    <table class="table table-success table-bordered table-hover table-light" id="data-table-view">
+      <thead>
+        <tr class="text-center">
+          <th>No.</th>
+          <th>Nama Kategori</th>
+          <th>Keterangan</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0 ; i < tableKategori.length; i++) { %>
+        <tr class="text-center">
+          <td><%= i +1 %></td>
+          <td><%= tableKategori[i].nama_kategori %></td>
+          <td><%= tableKategori[i].keterangan %></td>
+          <td>
+            <a href="" class="mx-2" title="Update"><i class="bi bi-pencil-square text-decoration-none" ></i></a>
+            <a href="" class="mx-2" title="Detail"><i class="bi bi-ticket-detailed text-decoration-none"></i></a>
+            <a href="" class="mx-2" title="Delete"><i class="bi bi-trash3-fill text-decoration-none"></i></a>
+          </td>
+        </tr>
+        <% }%>
+      </tbody>
+    </table>
+  </div>
+
+
+  <% if(success) {%>
+      <!-- Kode HTML untuk modal -->
+      <div class="modal fade" id="successModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Input Data Berhasil</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Data Kategori berhasil ditambahkan.
+            </div>
+            <div class="modal-footer">
+              <a href="/data/data_kategori">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% }%>
+
+  <script>
+    $(document).ready(function(){
+        $('#successModal').modal('show')
+    });
+  </script>
+
+  <script src="/js/searchBarLive.js"></script>
+  
+
+  <%- include('layouts/footer'); %>
+</body>
+</html>

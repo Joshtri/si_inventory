@@ -4,9 +4,8 @@ const mysql = require ("mysql");
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'db_inventorysma1'
+    database: 'db_inventorySMA1'
   });
-
 
 db.connect((err) => {
   if (err) {
