@@ -5,6 +5,7 @@ const ejs = require  ('ejs');
 const bodyparser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const session = require('express-session');
 
 const loginRoutes = require  ('./routes/login.js');
 const adminRoutes = require  ('./routes/admin.js');
@@ -20,6 +21,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // const __dirname = path.resolve();
+
+// Middleware session
+app.use(session({
+  secret: 'secret-key',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 440000 } // Session expires in 1 minute (adjust as needed)
+}));
 
 
 // Menambahkan library utk log request😭😭😭

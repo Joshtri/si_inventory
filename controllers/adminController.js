@@ -8,50 +8,73 @@ const db = require("../utils/database")
   di admin controller kita buat fungsi tambah data, tampilkan data, update dan delete.
 */
 
+
+
 exports.adminPages = (req, res) =>{
   const data = {
     title:"Admin View"
   };
 
-  res.render ('admin_view',{
-    adminData:data,
-    success:false
-  });
-};
+  const sql = "SELECT * FROM admin";
 
-
-exports.createAdmin = async(req,res) =>{
-  
-
-  //pemisahan.
-  const {nama_depan,nama_belakang} = req.body;
-  const nama_lengkap = `${nama_depan} ${nama_belakang}`
-
-  const fieldsAdmin = {
-              //bagian ini boleh beda dengan nama field di DB.
-    username: req.body.username,
-    password: req.body.password,
-    nama_lengkap: nama_lengkap,
-    nomor_telepon: req.body.nomor_telepon,
-    alamat_email: req.body.alamat_email,
-    // profile_admin: file.foto_profil
-
-  };
-
-  const sql = 'INSERT INTO admin SET ?'
-  db.query(sql,fieldsAdmin, (err, results)=>{
-
+  db.query(sql,(err, results)=>{
     if(err){
       throw err;
     }
 
     else if (!err){
-      res.render('admin_view',{
-        success:true,
-        adminData:"Admin View"
+      res.render ('admin_view',{
+        adminData:data,
+        success:false,
+        tableAdmin:results
       });
     }
-  })
+  });
+
+};
+
+
+exports.createAdmin = async(req,res) =>{
+  try {
+    const { username, password, nama_depan, nama_belakang, nomor_telepon, alamat_email } = req.body;
+
+    // Generate salt untuk hashing password
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+
+    // Mengenkripsi password menggunakan bcrypt
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Menggabungkan nama depan dan belakang menjadi nama lengkap
+    const nama_lengkap = `${nama_depan} ${nama_belakang}`;
+
+    // Menyimpan data admin dengan password terenkripsi
+    const fieldsAdmin = {
+      username: username,
+      password: hashedPassword,
+      nama_lengkap: nama_lengkap,
+      nomor_telepon: nomor_telepon,
+      alamat_email: alamat_email
+    };
+
+    const sql = 'INSERT INTO admin SET ?';
+    db.query(sql, fieldsAdmin, (err, results) => {
+      if (err) {
+        console.error('Database insert error:', err);
+        res.send('Registration failed');
+      } else {
+        res.render('admin_view', {
+          success: true,
+          adminData: "Admin View",
+          tableAdmin: results
+        });
+      }
+    });
+  } 
+  catch (error) {
+    console.error('Registration error:', error);
+    res.send('Registration failed');
+  }
 };
 
 exports.showDataTable = (req,res)=>{
