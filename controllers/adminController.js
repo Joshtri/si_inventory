@@ -20,38 +20,46 @@ exports.adminPages = (req, res) =>{
 };
 
 
-exports.createAdmin = async(req,res) =>{
-  
-
-  //pemisahan.
-  const {nama_depan,nama_belakang} = req.body;
-  const nama_lengkap = `${nama_depan} ${nama_belakang}`
+exports.createAdmin = (req, res) => {
+  const { nama_depan, nama_belakang } = req.body;
+  const nama_lengkap = `${nama_depan} ${nama_belakang}`;
 
   const fieldsAdmin = {
-              //bagian ini boleh beda dengan nama field di DB.
     username: req.body.username,
     password: req.body.password,
     nama_lengkap: nama_lengkap,
     nomor_telepon: req.body.nomor_telepon,
     alamat_email: req.body.alamat_email,
-    // profile_admin: file.foto_profil
-
   };
 
-  const sql = 'INSERT INTO admin SET ?'
-  db.query(sql,fieldsAdmin, (err, results)=>{
-
-    if(err){
+  // Generate salt
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
       throw err;
     }
 
-    else if (!err){
-      res.render('admin_view',{
-        success:true,
-        adminData:"Admin View"
+    // Hash the password with the generated salt
+    bcrypt.hash(fieldsAdmin.password, salt, (err, hash) => {
+      if (err) {
+        throw err;
+      }
+
+      // Store the hashed password in the fieldsAdmin object
+      fieldsAdmin.password = hash;
+
+      const sql = 'INSERT INTO admin SET ?';
+      db.query(sql, fieldsAdmin, (err, results) => {
+        if (err) {
+          throw err;
+        } else {
+          res.render('admin_view', {
+            success: true,
+            adminData: 'Admin View',
+          });
+        }
       });
-    }
-  })
+    });
+  });
 };
 
 exports.showDataTable = (req,res)=>{
