@@ -1,16 +1,15 @@
 const express = require ("express");
+const loginController = require('../controllers/loginController')
 const router = express.Router();
 
-router.get('/',(req,res) => {
-    res.render('login');
-});
+router.get('/login',loginController.loginAdmin)
+router.get('/reset_pass', loginController.updatePasswordPages)
+router.get('/forget_pass', loginController.forgetPasswordPages)
 
-router.get('/header',(req,res) =>{
-   res.render('header') 
-});
 
-router.get('/reset_pass',(req,res)=>{
-    res.render('forget_pass');
-})
+router.post('/post_login', loginController.adminLogin); 
+router.post('/sending_mail', loginController.sendmail_user);
+
+
 
 module.exports=router;

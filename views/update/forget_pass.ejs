@@ -12,10 +12,10 @@
         <div class="card">
             <h5 class="card-header text-center">Reset Password</h5>
             <div class="card-body">
-                <form>
+                <form action="/sending_mail" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        <input type="email" class="form-control" id="email" name="alamat_email_user" placeholder="Enter your email" required>
                     </div>
                     
                     <div class="d-grid">

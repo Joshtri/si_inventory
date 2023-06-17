@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {protect} = require('../utils/protect');  //function protectnya jangan dipake dlu.
 const kategoriController = require('../controllers/kategoriController');
 
 

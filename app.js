@@ -5,6 +5,8 @@ const ejs = require  ('ejs');
 const bodyparser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const loginRoutes = require  ('./routes/login.js');
 const adminRoutes = require  ('./routes/admin.js');
@@ -20,6 +22,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // const __dirname = path.resolve();
+
+// Middleware untuk mengatur sesi dan cookie
+app.use(cookieParser());
+
+app.use(session({
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 
 // Menambahkan library utk log request😭😭😭
