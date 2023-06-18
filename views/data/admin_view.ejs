@@ -31,22 +31,24 @@
           <th>No.</th>
           <th>Nama</th>
           <th>Username</th>
-          <th>NIP</th>
+          <th>Alamat Email</th>
           <th>Action</th>
         </tr>
         </thead>
       <tbody>
+        <% for(var i = 0 ; i < tableAdmin.length; i++) { %>
         <tr class="text-center">
-          <td>1</td>
-          <td>Alex</td>
-          <td>alex441</td>
-          <td>53144 </td>
+          <td><%= i + 1%></td>
+          <td><%= tableAdmin[i].nama_lengkap %></td>
+          <td><%= tableAdmin[i].username %></td>
+          <td><%= tableAdmin[i].alamat_email %> </td>
           <td>
             <a href="" class="mx-2" title="Update"><i class="bi bi-pencil-square"></i></a>
             <a href="" class="mx-2" title="Detail"><i class="bi bi-ticket-detailed"></i></a>
             <a href="" class="mx-2" title="Delete"><i class="bi bi-trash3-fill"></i></a>
           </td>
         </tr>
+        <% }%>
       </tbody>
     </table>
 
