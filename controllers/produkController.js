@@ -16,10 +16,11 @@ exports.produkPage = (req,res)=>{
 
 exports.createProdukPage = (req,res)=>{
   const data = {
-
+    title:"Tambah Produk"
   }
 
   res.render('add_produk',{
+    produkData:data
     
   });
 }

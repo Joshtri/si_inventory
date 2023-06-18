@@ -15,21 +15,25 @@
         <div class="card shadow">
             <h5 class="card-header text-center">Login Page</h5>
             <div class="card-body">
+<<<<<<< HEAD
+                <form method="POST" action="/post_login">
+=======
                 <form action="/post_login" method="POST">
+>>>>>>> yos_win
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                        <input type="text" class="form-control" name="username"placeholder="Enter your username">
                     </div>
 
                     <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                        <button class=" mt-2 btn btn-outline-secondary" type="button" id="showPasswordBtn">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
+                        <button class=" mt-2 btn btn-outline-secondary"  type="button" id="showPasswordBtn">
                             Show
                         </button>
                     </div>
                     <div class="mb-3 text-end">
-                        <a href="/reset_pass" >Lupa kata sandi ?</a>
+                        <a href="/forget_pass" >Lupa kata sandi ?</a>
                     </div>
 
                     <div class="d-flex justify-content-center">

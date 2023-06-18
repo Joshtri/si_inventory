@@ -6,6 +6,7 @@ const bodyparser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const loginRoutes = require  ('./routes/login.js');
 const adminRoutes = require  ('./routes/admin.js');
@@ -22,12 +23,13 @@ const PORT = process.env.PORT || 3000;
 
 // const __dirname = path.resolve();
 
-// Middleware session
+// Middleware untuk mengatur sesi dan cookie
+app.use(cookieParser());
+
 app.use(session({
   secret: 'secret-key',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 440000 } // Session expires in 1 minute (adjust as needed)
+  resave: false,
+  saveUninitialized: true
 }));
 
 

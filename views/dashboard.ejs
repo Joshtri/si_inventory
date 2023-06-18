@@ -24,8 +24,11 @@
 
 
     <div class="container pt-5">
+        <h4 class="mx-3 mb-3">Selamat Datang Admin <%= username %> :)</h4>
         <div class="card bg-light">
             <div class="card-body ">
+                
+                
                 <h3>Dashboard</h3>
                 <div class="row g-3">
                     <div class="col-md-4 mt-5">
@@ -33,15 +36,27 @@
                             <div class="card-body">
                                 <h6 class="card-title text-center"><i class="bi bi-people-fill mx-1"></i>Total Admin</h6>
                                 <hr>
+                                <h3 class="text-center"><%= adminCount %></h3>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-4 mt-5">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="card-title text-center"><i class="bi bi-box-seam-fill mx-1"></i>Total Produk</h6>
                                 <hr>
+                                <h3 class="text-center"><%= produkCount %></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title text-center"><i class="bi bi-box-seam-fill mx-1"></i>Total Produk</h6>
+                                <hr>
+                                <h3 class="text-center"><%= produkCount %></h3>
                             </div>
                         </div>
                     </div>
