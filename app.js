@@ -12,7 +12,7 @@ const adminRoutes = require  ('./routes/admin.js');
 const dashboardRoutes = require('./routes/dashboard.js');
 const kategoriRoutes = require('./routes/kategori.js');
 const produkRoutes = require('./routes/produk.js');
-
+const statsRoutes = require('./routes/stats.js');
 
 //import database from utils.
 const db = require("./utils/database.js").connect;
@@ -64,6 +64,7 @@ app.set('views',[
 // inisialisasi routes. 
 app.use('/', loginRoutes,dashboardRoutes);
 app.use('/data', adminRoutes, kategoriRoutes, produkRoutes);
+app.use('/statistics', statsRoutes);
 
   
 app.listen(PORT,()=>{
