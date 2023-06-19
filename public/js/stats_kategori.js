@@ -66,7 +66,7 @@ const config3 = {
 
 let myChart = new Chart(document.getElementById("chartKategori"), config);
 
-axios.get('/statistics/statistik/penduduk').then(e => {
+axios.get('/statistics/statistik/kategori').then(e => {
     myChart.data.datasets[0].data = e.data.data;
     myChart.update();
 });

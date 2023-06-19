@@ -1,11 +1,9 @@
 const crypto = require('crypto');
 const express = require ("express");
-const loginController = require('../controllers/loginController')
 const router = express.Router();
 const loginController = require('../controllers/loginController');
 const db = require("../utils/database");
-
-router.get('/',loginController.loginView);
+u
 
 router.get('/login',loginController.loginAdmin)
 router.get('/reset_pass', loginController.updatePasswordPages)

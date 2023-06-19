@@ -8,12 +8,12 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'db_inventorysma1',
+    database: 'db_inventorySMA1',
 });
 
 
 
-router.get('/statistik/penduduk', function (req, res, next) {
+router.get('/statistik/kategori', function (req, res, next) {
   // konek
       // data dari tabel
   
