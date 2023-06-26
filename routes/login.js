@@ -3,7 +3,7 @@ const express = require ("express");
 const router = express.Router();
 const loginController = require('../controllers/loginController');
 const db = require("../utils/database");
-u
+
 
 router.get('/login',loginController.loginAdmin)
 router.get('/reset_pass', loginController.updatePasswordPages)

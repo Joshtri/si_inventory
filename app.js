@@ -19,7 +19,7 @@ const statsRoutes = require('./routes/stats.js');
 const db = require("./utils/database.js").connect;
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3003;
 
 // const __dirname = path.resolve();
 
