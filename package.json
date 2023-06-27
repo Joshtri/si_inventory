@@ -7,9 +7,13 @@
     "start": "nodemon app.js",
     "test": "jest"
   },
-  "jest":{
-    "testMatch": ["/test/.jest.js"],
-    "testPathIgnorePatterns": ["/node_modules/"]
+  "jest": {
+    "testMatch": [
+      "/test/.jest.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "keywords": [],
   "author": "",
