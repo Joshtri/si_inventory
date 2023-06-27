@@ -1,6 +1,5 @@
 const crypto = require('crypto');
 const express = require ("express");
-const loginController = require('../controllers/loginController')
 const router = express.Router();
 const db = require("../utils/database");
 
