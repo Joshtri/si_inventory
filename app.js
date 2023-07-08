@@ -67,6 +67,6 @@ app.use('/data', adminRoutes, kategoriRoutes, produkRoutes);
 app.use('/statistics', statsRoutes);
 
   
-app.listen(PORT,()=>{
-    console.log("Server start on port :" + PORT);
+app.listen(3000,()=>{
+    console.log("Server start on port :" + 3000);
 });

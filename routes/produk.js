@@ -7,5 +7,10 @@ router.get('/data_produk', produkController.produkPage);
 router.get('/add_produk', produkController.createProdukPage)
 
 
+router.post('/post_produk', produkController.createProduk);
+router.post('/delete_produk',produkController.deleteProduk);
+router.post('/update_produk', produkController.updateProduk);
+
+
 
 module.exports = router;

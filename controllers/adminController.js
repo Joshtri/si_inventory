@@ -77,6 +77,21 @@ exports.createAdmin = async(req,res) =>{
   }
 };
 
+exports.deleteAdmin = (req,res)=>{
+  const id = req.body.id;
+  const query = 'DELETE FROM admin WHERE id = ?';
+
+  db.query(query,id, (err,results)=>{
+    if(err){
+      throw err;
+    }
+
+    else if(!err){
+      res.redirect('/data/data_admin') //ini hanya sememntara saja kok :))
+    }
+  });
+};
+
 exports.showDataTable = (req,res)=>{
 
   
