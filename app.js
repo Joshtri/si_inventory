@@ -13,6 +13,7 @@ const adminRoutes = require  ('./routes/admin.js');
 const dashboardRoutes = require('./routes/dashboard.js');
 const kategoriRoutes = require('./routes/kategori.js');
 const produkRoutes = require('./routes/produk.js');
+const supplierRoutes = require('./routes/supplier.js');
 const statsRoutes = require('./routes/stats.js');
 
 //import database from utils.
@@ -63,7 +64,7 @@ app.set('views',[
 
 // inisialisasi routes. 
 app.use('/', loginRoutes,dashboardRoutes);
-app.use('/data', adminRoutes, kategoriRoutes, produkRoutes);
+app.use('/data', adminRoutes, kategoriRoutes, produkRoutes, supplierRoutes );
 app.use('/statistics', statsRoutes);
 
   

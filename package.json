@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
@@ -45,6 +45,6 @@
   },
   "description": "",
   "devDependencies": {
-    "jest": "^25.0.0"
+    "jest": "^25.5.4"
   }
 }

@@ -23,7 +23,10 @@
 
                 <div class="col-md-4">
                   <label for="" class="form-label">Kategori Produk</label>
-                  <input type="text" class="form-control" name="kategori" required aria-required="true">
+                  <!-- <input type="text" class="form-control" name="kategori" required aria-required="true"> -->
+                  <select name="kategori" class="form-select" id="nama_kategori" aria-label="Floating label select example">
+                    <option value="" selected>-</option>
+                  </select>
                 </div>
 
                 <div class="col-md-4">
@@ -53,9 +56,12 @@
 
               <!-- Bagian 3 -->
               <div class="row mt-2">
-                <div class="col-md-4">
+                <div class="col-md-4">  
                   <label for="" class="form-label">Pemasok</label>
-                  <input class="form-control" name="pemasok" required>
+                  <!-- <input class="form-control" name="pemasok" required> -->
+                  <select name="pemasok" class="form-select" id="nama_supplier" required>
+                    <option value="" selected>-</option>
+                  </select>
                 </div>
 
                 <div class="col-md-4">
@@ -94,6 +100,38 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Ambil data produk dari backend dan tampilkan dalam select option
+    fetch('/data/jenis_kategori')
+      .then(response => response.json())
+      .then(data => {
+        const select = document.getElementById('nama_kategori');
+        data.forEach(kategori => {
+          const option = document.createElement('option');
+        //   option.value = product.id_jenispaket;
+          option.value = kategori.nama_kategori; // Menggabungkan dua value
+          option.text = kategori.nama_kategori; 
+          select.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching products:', error));
+
+      //fetch data untuk data supplier.
+      fetch('/data/supplier')
+      .then(response => response.json())
+      .then(data => {
+        const select = document.getElementById('nama_supplier');
+        data.forEach(supplier => {
+          const option = document.createElement('option');
+        //   option.value = product.id_jenispaket;
+          option.value = supplier.nama_supplier; // Menggabungkan dua value
+          option.text = supplier.nama_supplier; 
+          select.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching products:', error));
+  </script>
 
 
   <%- include('layouts/footer'); %>

@@ -55,6 +55,7 @@ exports.createProduk = (req, res) => {
       pemasok: req.body.pemasok,
       tanggal_masuk: req.body.tanggal_masuk,
       catatan: req.body.catatan,
+      // supplier:req.body.supplier, //tunggu field ini dibuat di DB
       foto: req.file ? req.file.filename : '' // Simpan nama file foto jika ada, atau kosong jika tidak ada
     };
 
@@ -124,3 +125,32 @@ exports.createProdukPage = (req,res)=>{
     
   });
 }
+
+//controller khusus untuk fetch data kategori ke option di tambah data produk.
+exports.optionKategori = (req,res)=>{
+  const query = 'SELECT * FROM kategori'
+
+  db.query(query, (err, results)=>{
+    if(err){
+      throw err;
+    }
+    else if(!err){
+      res.json(results);
+    }
+  });
+};
+
+//controller khusus untuk fetch data supplier ke option di tambah data produk.
+
+exports.optionSupplier = (req,res)=>{
+  const query = 'SELECT * FROM supplier';
+
+  db.query(query, (err,results)=>{
+    if(err){
+      throw err;
+    }
+    else if(!err){
+      res.json(results);
+    }
+  });
+};
