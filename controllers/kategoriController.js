@@ -1,8 +1,8 @@
 const db = require('../utils/database');
 const multer = require('multer');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const fs = require('fs');
 const ExcelJS = require('exceljs');
+const fs = require('fs');
 
 
 const upload = multer({ dest: 'uploads/' });

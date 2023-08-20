@@ -9,12 +9,24 @@
 <body>
   <!-- Add jquery. -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#exportButton').click(function() {
+        window.location.href = '/data/exports_produk'; // Permintaan ekspor data
+      });
+    });
+  </script>
   <%-include('layouts/header');%>
   
   <div class="container mt-5">
     <h3 class="text-center">Data Produk</h3>
     <a href="/data/add_produk" class="btn btn-dark"><i class="bi bi-plus-circle mx-1"></i>Tambah Data</a>
-    <button class="btn btn-warning dropdown-toggle"><i class="bi bi-menu-button-wide-fill mx-0"></i></button>
+    <button class="btn btn-warning dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="bi bi-menu-button-wide-fill mx-0"></i></button>
+
+    <ul class="dropdown dropdown-menu">
+      <li><a class="dropdown-item" id="exportButton">Export Data</a></li>
+      <li><a class="dropdown-item" data-bs-target="#importModal" data-bs-toggle="modal">Import Data</a></li>
+    </ul>
 
     <div class="d-flex float-end">
       <input type="text" class="form-control me-2" id="search-bar" placeholder="Search">
@@ -196,6 +208,29 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Kode HTML untuk modal import Data -->
+    <div class="modal fade" id="importModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Import Data</h5>
+            <button class="btn btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+          </div>
+          <form action="/data/import_produk" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+              <label for="" class="form-label">Import Data Excel</label>
+              <input type="file" name="csvFile" accept=".csv" class="form-control">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Import</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -15,6 +15,7 @@ router.post('/post_kategori', kategoriController.createKategori);
 router.post('/delete_kategori', kategoriController.deleteKategori);
 router.post('/update_kategori', kategoriController.updateKategori);
 // router.post('/import_kategori', kategoriController.importingKategori);
+
 router.post('/import_kategori', upload.single('csvFile'), kategoriController.importingKategori);
 
 

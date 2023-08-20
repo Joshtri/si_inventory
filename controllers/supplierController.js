@@ -1,4 +1,5 @@
 const db = require('../utils/database');
+const nodemailer = require('nodemailer');
 
 exports.supplierPage = (req,res)=>{
   const data ={
@@ -64,6 +65,6 @@ exports.deleteSupplier = (req,res)=>{
   });
 }
 
-exports.sendMailSupplier = (req,res)={
+exports.sendMailSupplier = (req,res)=>{
 
 }

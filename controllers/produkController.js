@@ -1,5 +1,8 @@
 const db = require('../utils/database');
 const multer = require('multer');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const ExcelJS = require('exceljs');
+const fs = require('fs');
 
 // Konfigurasi penyimpanan file
 const storage = multer.diskStorage({
@@ -13,6 +16,21 @@ const storage = multer.diskStorage({
 
 // Inisialisasi upload multer
 const upload = multer({ storage: storage });
+
+const uploadExcel = multer({ dest: 'uploads/' });
+
+// Fungsi untuk memproses data dari file CSV dan menyimpan ke tabel kategori
+function processData(data) {
+  data.forEach((row) => {
+    // Simpan data ke tabel kategori dalam database
+    const query = `INSERT INTO kategori (nama_kategori, keterangan) VALUES ('${row[0]}', '${row[1]}')`;
+    db.query(query, (error, results) => {
+      if (error) {
+        console.error(error);
+      }
+    });
+  });
+}
 
 exports.produkPage = (req,res)=>{
   const data = {
@@ -153,4 +171,73 @@ exports.optionSupplier = (req,res)=>{
       res.json(results);
     }
   });
+};
+
+exports.exportingDataProduk = (req,res)=>{
+  const query = 'SELECT * FROM produk';
+
+  db.query(query, (err,results)=>{
+    if(err){
+      throw err;
+    }
+    else if(!err){
+      const csvWriter = createCsvWriter({
+        path:'data_produk.csv',
+        header:[
+          {id:'id_produk', title:"ID Produk"},
+          {id:'nama_produk', title:"Nama Produk"},
+          {id:'deskripsi', title:"Deskripsi Produk"},
+          {id:'harga', title:"Harga Produk"},
+          {id:'jumlah', title:"Jumlah Produk"},
+          {id:'satuan', title:"Satuan Produk"},
+          {id:'kategori', title:"Kategori Produk"},
+          {id:'pemasok', title:"Nama Supplier"},
+          {id:'tanggal_masuk', title:"Tanggal Masuk"},
+          {id:'catatan', title:"Catatan Produk"},
+        ]
+      });
+      // Tulis data ke file CSV
+      csvWriter.writeRecords(results).then(()=>{
+        console.log('Data exported to CSV file');
+        res.download('data_produk.csv'); // Unduh file CSV
+      });
+    }
+  });
+};
+
+exports.importingProduk = (req,res)=>{
+  uploadExcel.single('csvFile')(req,res,function(err){
+    const file = req.file;
+    // Pastikan file yang diupload adalah file CSV
+    if (file.mimetype !== 'text/csv') {
+      return res.status(400).send('Invalid file format');
+    }
+  
+    const workbook = new ExcelJS.Workbook();
+    workbook.csv.readFile(file.path)
+      .then(function() {
+        const worksheet = workbook.getWorksheet(1);
+        const jsonData = [];
+  
+        worksheet.eachRow(function(row, rowNumber) {
+          const rowData = [];
+          row.eachCell(function(cell, colNumber) {
+            rowData.push(cell.value);
+          });
+          jsonData.push(rowData);
+        });
+  
+        // Proses data yang telah dibaca
+        processData(jsonData);
+  
+        // Hapus file yang diupload setelah selesai diproses
+        fs.unlinkSync(file.path);
+  
+        res.send('Data imported successfully');
+      })
+      .catch(function(error) {
+        console.error(error);
+        res.status(500).send('Error importing data');
+      });
+    })
 };
